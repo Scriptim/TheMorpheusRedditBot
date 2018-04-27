@@ -1,0 +1,23 @@
+{
+  "name": "themorpheus-reddit-bot",
+  "version": "1.0.0",
+  "description": "Bot for r/TheMorpheusTuts written in JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Scriptim/TheMorpheusRedditBot.git"
+  },
+  "keywords": [
+    "reddit",
+    "bot"
+  ],
+  "author": "Scriptim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Scriptim/TheMorpheusRedditBot/issues"
+  },
+  "homepage": "https://github.com/Scriptim/TheMorpheusRedditBot#readme"
+}
