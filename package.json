@@ -21,6 +21,6 @@
   },
   "homepage": "https://github.com/Scriptim/TheMorpheusRedditBot#readme",
   "dependencies": {
-    "dotenv": "^5.0.1"
+    "snoowrap": "^1.15.2"
   }
 }
