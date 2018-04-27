@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Scriptim/TheMorpheusRedditBot/issues"
   },
-  "homepage": "https://github.com/Scriptim/TheMorpheusRedditBot#readme"
+  "homepage": "https://github.com/Scriptim/TheMorpheusRedditBot#readme",
+  "dependencies": {
+    "dotenv": "^5.0.1"
+  }
 }
