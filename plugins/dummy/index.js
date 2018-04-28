@@ -4,10 +4,10 @@ module.exports = {
   author: 'Scriptim',
   description: 'Dummy plugin for testing purposes and as template',
   interval: 60,
-  setup: api => {
+  setup: (api, logger) => {
   
   },
-  run: api => {
+  run: (api, logger) => {
     
   }
 }
