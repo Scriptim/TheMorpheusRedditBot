@@ -11,3 +11,10 @@ const reddit = new snoowrap({
 })
 
 const subreddit = reddit.getSubreddit(credentials.REDDIT_SUBREDDIT)
+
+const dummy = require('./plugins/dummy/index.js')
+const api = {
+  reddit: subreddit
+}
+dummy.setup(api)
+dummy.run(api)
