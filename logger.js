@@ -1,9 +1,10 @@
-const logToFile = true // set this to false to disable loggin to file
+const logToFile = true // set this to false to disable logging to file
 
 const log4js = require('log4js')
 log4js.configure({
   appenders: {
-    console: { type: 'console' },
+    console: { type: 'console' }, // console.log()
+    // flag 'w' to clear file if it already exists
     file: { type: 'file', filename: './themorpheusbot.log', flags: 'w' }
   },
   categories: {
@@ -12,6 +13,7 @@ log4js.configure({
 })
 module.exports = log4js
 
+// shutdown logger on exit to close all files etc.
 function handleSignal(signal) {
   log4js.getLogger().info('Received ' + signal)
   log4js.shutdown(process.exit.bind(137))

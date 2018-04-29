@@ -1,5 +1,5 @@
-const log4js = require('./logger.js')
-const logger = log4js.getLogger()
+const log4js = require('./logger.js') // exports preconfigured log4js module
+const logger = log4js.getLogger() // logger with default category
 
 logger.debug('Loading credentials from "credentials.json"')
 const credentials = require('./credentials.js')
@@ -16,9 +16,10 @@ const reddit = new snoowrap({
 })
 
 logger.debug('Getting subreddit')
+// prevent frequent use of getSubreddit()
 reddit.subreddit = reddit.getSubreddit(credentials.REDDIT_SUBREDDIT)
 
-const api = {}
+const api = {} // api wrapper passed to setup() and run()
 api.reddit = reddit
 
 function loadYouTubeApi() {
@@ -44,12 +45,12 @@ function loadPlugins() {
   try {
     items = fs.readdirSync('./plugins')
   } catch (err) {
-    logger.fatal(err)
+    logger.fatal(err) // bot does not work without plugins
     process.exit(1)
   }
 
   logger.debug('Loading plugins')
-  let plugins = []
+  let plugins = [] // will contain all successfully set ip plugins
   for (let item of items) {
     let pluginEntry = path.resolve(path.join('./plugins', item, 'index.js'))
     let plugin
@@ -67,6 +68,7 @@ function loadPlugins() {
 
     logger.debug('Setting up \'' + plugin.name + '\'')
     try {
+      // create logger with custom category for every plugin
       plugin.setup(api, log4js.getLogger(plugin.name))
     } catch (err) {
       logger.error(err)
@@ -90,6 +92,6 @@ function loadPlugins() {
       } catch(err) {
         logger.error(err)
       }
-    }, plugin.interval * 1000)
+    }, plugin.interval * 1000) // plugin.interval is in seconds
   }
 }
