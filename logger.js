@@ -1,3 +1,5 @@
+const logToFile = true // set this to false to disable loggin to file
+
 const log4js = require('log4js')
 log4js.configure({
   appenders: {
@@ -5,7 +7,7 @@ log4js.configure({
     file: { type: 'file', filename: './themorpheusbot.log', flags: 'w' }
   },
   categories: {
-    default: { appenders: ['console', 'file'], level: 'all' },
+    default: { appenders: logToFile ? ['console', 'file'] : ['console'], level: 'all' },
   }
 })
 module.exports = log4js
