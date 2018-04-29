@@ -78,6 +78,10 @@ function loadPlugins() {
 
   logger.debug('Starting run intervals')
   for (let plugin of plugins) {
+    if (plugin.interval <= 0) {
+      logger.debug('Not setting interval for \"' + plugin.name + '\"')
+      continue
+    }
     logger.debug('Setting interval for \'' + plugin.name + '\'')
     setInterval(() => {
       try {
