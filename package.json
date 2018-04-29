@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/Scriptim/TheMorpheusRedditBot#readme",
   "dependencies": {
+    "googleapis": "^29.0.0",
     "log4js": "^2.5.3",
+    "readline-sync": "^1.4.9",
     "snoowrap": "^1.15.2"
   }
 }

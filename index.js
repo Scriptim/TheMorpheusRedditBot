@@ -17,59 +17,74 @@ const reddit = new snoowrap({
 logger.debug('Getting subreddit')
 const subreddit = reddit.getSubreddit(credentials.REDDIT_SUBREDDIT)
 
-const api = {
-  reddit: subreddit
+const api = {}
+api.reddit = subreddit
+
+function loadYouTubeApi() {
+  logger.debug('Creating youtube api object')
+  const youtube = require('./api/youtube.js')
+  youtube.getApi({
+    id: credentials.YOUTUBE_ID,
+    secret: credentials.YOUTUBE_SECRET
+  }, logger, youtubeService => {
+    api.youtube = youtubeService
+    logger.debug('Loading plugins')
+    loadPlugins()
+  })
 }
+loadYouTubeApi()
 
-const fs = require('fs')
-const path = require('path')
+function loadPlugins() {
+  const fs = require('fs')
+  const path = require('path')
 
-logger.debug('Reading plugins directory')
-let items
-try {
-  items = fs.readdirSync('./plugins')
-} catch (err) {
-  logger.fatal(err)
-  process.exit(1)
-}
-
-logger.debug('Loading plugins')
-let plugins = []
-for (let item of items) {
-  let pluginEntry = path.resolve(path.join('./plugins', item, 'index.js'))
-  let plugin
-
-  logger.debug('Loading plugin \'' + item + '\' from"' + pluginEntry + '"')
+  logger.debug('Reading plugins directory')
+  let items
   try {
-    plugin = require(pluginEntry)
-    logger.info('Loaded plugin \'' + plugin.name
-      + '\' by \'' + plugin.author
-      + '\' [' + plugin.interval + ']')
+    items = fs.readdirSync('./plugins')
   } catch (err) {
-    logger.error(err)
-    continue
+    logger.fatal(err)
+    process.exit(1)
   }
 
-  logger.debug('Setting up \'' + plugin.name + '\'')
-  try {
-    plugin.setup(api, logger)
-  } catch (err) {
-    logger.error(err)
-    continue
-  }
+  logger.debug('Loading plugins')
+  let plugins = []
+  for (let item of items) {
+    let pluginEntry = path.resolve(path.join('./plugins', item, 'index.js'))
+    let plugin
 
-  plugins.push(plugin)
-}
-
-logger.debug('Starting run intervals')
-for (let plugin of plugins) {
-  logger.debug('Setting interval for \'' + plugin.name + '\'')
-  setInterval(() => {
+    logger.debug('Loading plugin \'' + item + '\' from"' + pluginEntry + '"')
     try {
-      logger.debug('Running \'' + plugin.name + '\'')
-      plugin.run(api, logger)
-    } catch(err) {
+      plugin = require(pluginEntry)
+      logger.info('Loaded plugin \'' + plugin.name
+        + '\' by \'' + plugin.author
+        + '\' [' + plugin.interval + ']')
+    } catch (err) {
       logger.error(err)
+      continue
     }
-  }, plugin.interval * 1000)
+
+    logger.debug('Setting up \'' + plugin.name + '\'')
+    try {
+      plugin.setup(api, logger)
+    } catch (err) {
+      logger.error(err)
+      continue
+    }
+
+    plugins.push(plugin)
+  }
+
+  logger.debug('Starting run intervals')
+  for (let plugin of plugins) {
+    logger.debug('Setting interval for \'' + plugin.name + '\'')
+    setInterval(() => {
+      try {
+        logger.debug('Running \'' + plugin.name + '\'')
+        plugin.run(api, logger)
+      } catch(err) {
+        logger.error(err)
+      }
+    }, plugin.interval * 1000)
+  }
 }

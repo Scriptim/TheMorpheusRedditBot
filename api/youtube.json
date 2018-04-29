@@ -1,0 +1,11 @@
+{
+  "PROJECT": "durable-utility-202610",
+  "AUTH": "https://accounts.google.com/o/oauth2/auth",
+  "TOKEN": "https://accounts.google.com/o/oauth2/token",
+  "CERT": "https://www.googleapis.com/oauth2/v1/certs",
+  "REDIRECT": "http://localhost",
+  "TOKEN_FILE": "./api/youtube_token.json",
+  "SCOPES": [
+    "https://www.googleapis.com/auth/youtube.readonly"
+  ]
+}
