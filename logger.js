@@ -8,11 +8,10 @@ log4js.configure({
     default: { appenders: ['console', 'file'], level: 'all' },
   }
 })
-const logger = log4js.getLogger()
-module.exports = logger
+module.exports = log4js
 
 function handleSignal(signal) {
-  logger.info('Received ' + signal)
+  log4js.getLogger().info('Received ' + signal)
   log4js.shutdown(process.exit.bind(137))
 }
 

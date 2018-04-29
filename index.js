@@ -1,4 +1,5 @@
-const logger = require('./logger')
+const log4js = require('./logger.js')
+const logger = log4js.getLogger()
 
 logger.debug('Loading credentials from "credentials.json"')
 const credentials = require('./credentials.js')
@@ -26,7 +27,7 @@ function loadYouTubeApi() {
   youtube.getApi({
     id: credentials.YOUTUBE_ID,
     secret: credentials.YOUTUBE_SECRET
-  }, logger, youtubeService => {
+  }, log4js.getLogger('youtube'), youtubeService => {
     api.youtube = youtubeService
     logger.debug('Loading plugins')
     loadPlugins()
@@ -66,7 +67,7 @@ function loadPlugins() {
 
     logger.debug('Setting up \'' + plugin.name + '\'')
     try {
-      plugin.setup(api, logger)
+      plugin.setup(api, log4js.getLogger(plugin.name))
     } catch (err) {
       logger.error(err)
       continue
@@ -81,7 +82,7 @@ function loadPlugins() {
     setInterval(() => {
       try {
         logger.debug('Running \'' + plugin.name + '\'')
-        plugin.run(api, logger)
+        plugin.run(api, log4js.getLogger(plugin.name))
       } catch(err) {
         logger.error(err)
       }
