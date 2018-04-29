@@ -111,7 +111,7 @@ Each plugin is assigned a custom [`log4js`](https://github.com/log4js-node/log4j
 
 ### Language
 
-All code, logging and documentation is in **English**. The **German** language is used for text that will be shown on Reddit as it addressed a German subreddit.
+All code, logging and documentation is in **English**. The **German** language is used for text that will be shown on Reddit as it addresses a German subreddit.
 
 ### Restrictions
 
