@@ -1,3 +1,4 @@
+const request = require('request')
 let post
 
 module.exports = {
@@ -11,6 +12,21 @@ module.exports = {
     post = api.reddit.getSubmission(postId)
   },
   run: (api, logger) => {
+    logger.debug('Requesting comments')
+    // Receive the 10 most recent comments, no need for api request
+    request('https://www.reddit.com/r/TheMorpheusTuts/comments.json?limit=10', (err, res, body) => {
+      if (err) {
+        logger.error(err)
+      }
 
+      if (res) {
+        logger.debug('Received response with status code ' + res.statusCode)
+      } else {
+        logger.error(new Error('No response received'))
+        return
+      }
+
+      const comments = JSON.parse(body).data
+    })
   }
 }
