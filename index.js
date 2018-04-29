@@ -15,10 +15,10 @@ const reddit = new snoowrap({
 })
 
 logger.debug('Getting subreddit')
-const subreddit = reddit.getSubreddit(credentials.REDDIT_SUBREDDIT)
+reddit.subreddit = reddit.getSubreddit(credentials.REDDIT_SUBREDDIT)
 
 const api = {}
-api.reddit = subreddit
+api.reddit = reddit
 
 function loadYouTubeApi() {
   logger.debug('Creating youtube api object')
