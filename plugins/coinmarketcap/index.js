@@ -12,7 +12,7 @@ function prepenPlusIfPositive(percentage) {
 module.exports = {
   name: 'Coinmarketcap',
   author: 'Scriptim',
-  description: 'Update a post with the current market cap of several crypto currencies',
+  description: 'Update a post with the current market caps of several crypto currencies',
   interval: 3600,
   setup: (api, logger) => {
     const postId = '8fugur'
