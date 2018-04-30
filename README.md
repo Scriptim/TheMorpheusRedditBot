@@ -78,7 +78,7 @@ This function is called once at the very beginning, when the bot is started.
 
 #### `run(api, logger)`
 
-This function is called in a loop at the specified `interval`. The loop starts after the setup for all plugins is finished.
+This function is called in a loop at the specified `interval`. The loop starts after the setups for all plugins are finished.
 
 *For more information about the `api` and `logger` arguments see below*
 
