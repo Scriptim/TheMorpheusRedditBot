@@ -16,9 +16,9 @@ function humanReadableDateDiff(timestamp) {
   for (let unit in units) {
     let n = Math.floor(diff / units[unit][0])
     if (n == 1) {
-      return n + ' ' + unit
+      return 'vor ' + n + ' ' + unit
     } else if (n > 1) {
-      return n + ' ' + unit + units[unit][1] // append plural letter(s)
+      return 'vor ' + n + ' ' + unit + units[unit][1] // append plural letter(s)
     }
   }
 
@@ -63,7 +63,7 @@ module.exports = {
         childStr += '  \n>' + child.body.replace(/\n/g, '\n>') + '  \n\n'
         // &#183; = middle dot for separation
         childStr += '**&nbsp;&#11137; ' + child.score + '&nbsp;&#183;&nbsp;' // up/down arrows
-        childStr += 'vor ' + humanReadableDateDiff(child.created_utc) + '&nbsp;&#183;&nbsp;'
+        childStr += humanReadableDateDiff(child.created_utc) + '&nbsp;&#183;&nbsp;'
         childStr += child.edited ? '&#128393;&nbsp;&nbsp;' : '' // pencil
         childStr += child.stickied ? '&#128204;&nbsp;&nbsp;' : '' // pushpin
         childStr += child.approved ? '&#10003;&nbsp;&nbsp;' : '' // tick
