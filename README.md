@@ -29,6 +29,8 @@ If you develop a plugin, you don't have to worry about it. The credentials speci
 
 All logs are written to the console and to a `themorpheusbot.log` file by default. If you want to disable logging to the file, open `logger.js` and change the first line to `const logToFile = false`. The log file will still be created however there will be no output logged to it.
 
+Regardless of this, logs of level `error` or higher are always written to `themorpheusbot.error.log`.
+
 ## GitHub Issues
 
 You can use the [Issues Page](https://github.com/Scriptim/TheMorpheusRedditBot/issues "Issues") to
