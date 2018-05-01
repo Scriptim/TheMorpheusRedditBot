@@ -69,7 +69,7 @@ module.exports = {
       text += '[**' + video.snippet.title + '**]'
       text += '(https://www.youtube.com/watch?v=' + video.id.videoId + ')  \n'
       text += '*' + humanReadableDateDiff(video.snippet.publishedAt) + '*  \n'
-      text += '>' + video.snippet.description.replace(/\n/g, '  \n').split('\n').join('\n>')
+      text += '\n    ' + video.snippet.description
       text += '\n'
 
       logger.debug('Requesting statistics')
