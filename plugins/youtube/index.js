@@ -38,6 +38,8 @@ module.exports = {
   run: (api, logger) => {
     let text = ''
 
+    text += '**[zum Kanal](https://www.youtube.com/channel/' + channelId + ')**\n\n'
+
     // searching for videos as youtube data api does not provide
     // a convenient way for getting most recent video
     logger.debug('Requesting search results')
