@@ -97,11 +97,59 @@ module.exports = {
         text += '# Statistiken\n'
         text += '**' + stats.subscriberCount + '** Abonnenten  \n'
         text += '**' + stats.viewCount + '** Views  \n'
-        text += '**' + stats.videoCount + '** Videos\n\n'
+        text += '**' + stats.videoCount + '** Videos\n'
 
-        logger.debug('Editing post')
-        post.edit(text)
+        // playlists
+        logger.debug('Requesting playlists')
+        getPlaylists(api.youtube, logger, playlists => {
+          playlists = playlists.map(playlist => {
+            return '[' + playlist.title + '](https://www.youtube.com/playlist?list=' + playlist.id + ')'
+          })
+
+          text += '# Alle Playlisten\n'
+          text += '- ' + playlists.join('\n- ')
+
+          logger.debug('Editing post')
+          post.edit(text)
+        })
       })
     })
   }
+}
+
+function getPlaylists(api, logger, callback, token) {
+  api.playlists.list({
+    part: 'contentDetails,snippet',
+    channelId: channelId,
+    maxResults: 10,
+    pageToken: token // first page if undefined
+  }, (err, res) => {
+    if (err) {
+      logger.error(err)
+      return
+    }
+
+    if (res) {
+      logger.debug('Received response with status code ' + res.status)
+    } else {
+      logger.error(new Error('No response received'))
+      return
+    }
+
+    const playlists = res.data.items.map(item => {
+      return {
+        title: item.snippet.title,
+        id: item.id
+      }
+    })
+
+    if (res.data.nextPageToken) {
+      logger.debug('Requesting next playlists with page token ' + res.data.nextPageToken)
+      getPlaylists(api, logger, nextPlaylists => {
+        callback(playlists.concat(nextPlaylists))
+      }, res.data.nextPageToken)
+    } else {
+      callback(playlists)
+    }
+  })
 }
