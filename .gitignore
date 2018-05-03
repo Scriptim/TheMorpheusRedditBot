@@ -1,4 +1,4 @@
 node_modules/
 credentials.json
-themorpheusbot.log
+themorpheusbot*.log
 api/youtube_token.json

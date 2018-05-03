@@ -5,10 +5,13 @@ log4js.configure({
   appenders: {
     console: { type: 'console' }, // console.log()
     // flag 'w' to clear file if it already exists
-    file: { type: 'file', filename: './themorpheusbot.log', flags: 'w' }
+    file: { type: 'file', filename: './themorpheusbot.log', flags: 'w' },
+    errfile: { type: 'file', filename: './themorpheusbot.error.log' },
+    errfilter: { type: 'logLevelFilter', appender: 'errfile', level: 'error' }
   },
   categories: {
-    default: { appenders: logToFile ? ['console', 'file'] : ['console'], level: 'all' },
+    default: { appenders: logToFile ?
+      ['console', 'file', 'errfilter'] : ['console', 'errfilter'], level: 'all' },
   }
 })
 module.exports = log4js

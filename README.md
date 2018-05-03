@@ -29,6 +29,8 @@ If you develop a plugin, you don't have to worry about it. The credentials speci
 
 All logs are written to the console and to a `themorpheusbot.log` file by default. If you want to disable logging to the file, open `logger.js` and change the first line to `const logToFile = false`. The log file will still be created however there will be no output logged to it.
 
+Regardless of this, logs of level `error` or higher are always written to `themorpheusbot.error.log`.
+
 ## GitHub Issues
 
 You can use the [Issues Page](https://github.com/Scriptim/TheMorpheusRedditBot/issues "Issues") to
@@ -78,7 +80,7 @@ This function is called once at the very beginning, when the bot is started.
 
 #### `run(api, logger)`
 
-This function is called in a loop at the specified `interval`. The loop starts after the setup for all plugins is finished.
+This function is called in a loop at the specified `interval`. The loop starts after the setups for all plugins are finished.
 
 *For more information about the `api` and `logger` arguments see below*
 
