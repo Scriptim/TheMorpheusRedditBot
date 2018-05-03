@@ -1,7 +1,7 @@
 const request = require('request')
 let post
 
-function prepenPlusIfPositive(percentage) {
+function prependPlusIfPositive(percentage) {
   // prepends '+' if percentage is not negative
   if (percentage[0] !== '-') {
     percentage = '+' + percentage
@@ -41,9 +41,9 @@ module.exports = {
         coinString += coin.rank + '. '
         coinString += '**' + coin.name + '** (' + coin.symbol + ')  \n'
         coinString += '**' + coin.price_eur + '&euro;** '
-        coinString += '(' + prepenPlusIfPositive(coin.percent_change_1h) + '%/Stunde, '
-        coinString += prepenPlusIfPositive(coin.percent_change_24h) + '%/Tag, '
-        coinString += prepenPlusIfPositive(coin.percent_change_7d) + '%/Woche)'
+        coinString += '(' + prependPlusIfPositive(coin.percent_change_1h) + '%/Stunde, '
+        coinString += prependPlusIfPositive(coin.percent_change_24h) + '%/Tag, '
+        coinString += prependPlusIfPositive(coin.percent_change_7d) + '%/Woche)'
 
         coinStrings.push(coinString)
       }
