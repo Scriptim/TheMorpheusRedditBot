@@ -50,7 +50,7 @@ function loadPlugins() {
   }
 
   logger.debug('Loading plugins')
-  let plugins = [] // will contain all successfully set ip plugins
+  let plugins = [] // will contain all successfully set up plugins
   for (let item of items) {
     let pluginEntry = path.resolve(path.join('./plugins', item, 'index.js'))
     let plugin
