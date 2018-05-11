@@ -39,11 +39,12 @@ loadYouTubeApi()
 function loadPlugins() {
   const fs = require('fs')
   const path = require('path')
+  const filepath = require('./filepath.js')
 
   logger.debug('Reading plugins directory')
   let items
   try {
-    items = fs.readdirSync('./plugins')
+    items = fs.readdirSync(filepath('plugins'))
   } catch (err) {
     logger.fatal(err) // bot does not work without plugins
     process.exit(1)
@@ -52,7 +53,7 @@ function loadPlugins() {
   logger.debug('Loading plugins')
   let plugins = [] // will contain all successfully set up plugins
   for (let item of items) {
-    let pluginEntry = path.resolve(path.join('./plugins', item, 'index.js'))
+    let pluginEntry = filepath(path.join('plugins', item, 'index.js'))
     let plugin
 
     logger.debug('Loading plugin \'' + item + '\' from"' + pluginEntry + '"')

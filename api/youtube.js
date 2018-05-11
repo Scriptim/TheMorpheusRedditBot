@@ -1,6 +1,7 @@
 const {google} = require('googleapis')
 
 const fs = require('fs')
+const filepath = require('../filepath.js')
 
 let logger
 let config // parsed youtube.json
@@ -10,7 +11,7 @@ module.exports = {
     logger = loggerObj
     logger.debug('Reading configuration from "api/youtube.json"')
     try {
-      config = JSON.parse(fs.readFileSync('./api/youtube.json'))
+      config = JSON.parse(fs.readFileSync(filepath('api/youtube.json')))
     } catch(err) {
       logger.error(err)
     }
@@ -33,7 +34,7 @@ function authorize(auth, callback) {
   logger.debug('Reading token from "' + config.TOKEN_FILE + '"')
   let token
   try {
-    token = fs.readFileSync(config.TOKEN_FILE, { encoding: 'utf-8' })
+    token = fs.readFileSync(filepath(config.TOKEN_FILE), { encoding: 'utf-8' })
     token = JSON.parse(token)
     logger.debug('Got token from file')
     oauth2Client.setCredentials(token)
@@ -70,10 +71,10 @@ function retrieveToken(auth, callback) {
     if (err) {
       logger.error(err)
     } else {
-      logger.debug('Saving token to "' + config.TOKEN_FILE + '"')
+      logger.debug('Saving token to "' + filepath(config.TOKEN_FILE) + '"')
       try {
         // save token for future uses
-        fs.writeFileSync(config.TOKEN_FILE, JSON.stringify(token), { encoding: 'utf-8' })
+        fs.writeFileSync(filepath(config.TOKEN_FILE), JSON.stringify(token), { encoding: 'utf-8' })
       } catch(err) {
         logger.error(err)
       }

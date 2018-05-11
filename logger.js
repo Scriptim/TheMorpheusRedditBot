@@ -1,12 +1,13 @@
 const logToFile = true // set this to false to disable logging to file
 
+const filepath = require('./filepath.js')
 const log4js = require('log4js')
 log4js.configure({
   appenders: {
     console: { type: 'console' }, // console.log()
     // flag 'w' to clear file if it already exists
-    file: { type: 'file', filename: './themorpheusbot.log', flags: 'w' },
-    errfile: { type: 'file', filename: './themorpheusbot.error.log' },
+    file: { type: 'file', filename: filepath('themorpheusbot.log'), flags: 'w' },
+    errfile: { type: 'file', filename: filepath('themorpheusbot.error.log') },
     errfilter: { type: 'logLevelFilter', appender: 'errfile', level: 'error' }
   },
   categories: {

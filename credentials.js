@@ -1,3 +1,4 @@
 const fs = require('fs')
-const credentials = JSON.parse(fs.readFileSync('./credentials.json', 'utf-8'))
+const filepath = require('./filepath.js')
+const credentials = JSON.parse(fs.readFileSync(filepath('credentials.json'), 'utf-8'))
 module.exports = credentials
