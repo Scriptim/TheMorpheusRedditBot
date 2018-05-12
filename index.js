@@ -56,7 +56,7 @@ function loadPlugins() {
     let pluginEntry = filepath(path.join('plugins', item, 'index.js'))
     let plugin
 
-    logger.debug('Loading plugin \'' + item + '\' from"' + pluginEntry + '"')
+    logger.debug('Loading plugin \'' + item + '\' from "' + pluginEntry + '"')
     try {
       plugin = require(pluginEntry)
       logger.info('Loaded plugin \'' + plugin.name
