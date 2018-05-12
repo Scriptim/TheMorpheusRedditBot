@@ -5,7 +5,7 @@
 ## How to use
 
 - **Install** all dependencies by running `npm install`
-- **Start** the bot by running `node .`
+- **Start** the bot by running `npm start`
 
 ### Credentials
 
