@@ -96,3 +96,7 @@ function loadPlugins() {
     }, plugin.interval * 1000) // plugin.interval is in seconds
   }
 }
+
+logger.debug('Starting webhook for GitHub')
+const githubWebhook = require('./github-webhook.js')
+githubWebhook(credentials.WEBHOOK_SECRET, 8080, log4js.getLogger('gh-webhook'))
