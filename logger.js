@@ -1,4 +1,4 @@
-const logToFile = true // set this to false to disable logging to file
+const logToFile = false // set this to false to disable logging to file
 
 const filepath = require('./filepath.js')
 const log4js = require('log4js')
