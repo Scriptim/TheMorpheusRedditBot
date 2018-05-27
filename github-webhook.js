@@ -27,9 +27,11 @@ function start(secret, port, logger) {
   
   handler.on('push', event => {
     logger.debug('Received push event from GitHub')
-    spawn('git pull').on('exit', data => {
+    const child = spawn('git pull origin master')
+    child.on('exit', data => {
       logger.info('Finished pulling from remote')
-    }).stderr.on('data', data => {
+    })
+    child.stderr.on('data', data => {
       logger.error(data)
     })
   })
