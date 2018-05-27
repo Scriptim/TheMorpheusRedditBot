@@ -1,5 +1,6 @@
 const http = require('http')
 const githubWebhookHandler = require('github-webhook-handler')
+const spawn = require('child_process').spawn
 
 function start(secret, port, logger) {
   logger.debug('Creating handler')
@@ -26,6 +27,11 @@ function start(secret, port, logger) {
   
   handler.on('push', event => {
     logger.debug('Received push event from GitHub')
+    spawn('git pull').on('exit', data => {
+      logger.info('Finished pulling from remote')
+    }).stderr.on('data', data => {
+      logger.error(data)
+    })
   })
 }
 module.exports = start
