@@ -5,4 +5,5 @@ WORKDIR /usr/src/app
 COPY . .
 RUN npm install --production --silent
 RUN apk add --no-cache git
+EXPOSE 8080
 CMD npm start
