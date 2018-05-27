@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "./node_modules/forever/bin/forever --minUptime 5000 --spinSleepTime 1000 -w .",
+    "build": "docker build -t themorpheusredditbot .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
