@@ -25,9 +25,9 @@ This bot needs certain credentials to work properly. Create a `credentials.json`
 
 If you develop a plugin, you don't have to worry about it. The credentials specified in `credentials.json` are used globally so that no plugin is responsible for any authorization.
 
-### Disable logging to file
+### Enable logging to file
 
-All logs are written to the console and to a `themorpheusbot.log` file by default. If you want to disable logging to the file, open `logger.js` and change the first line to `const logToFile = false`. The log file will still be created however there will be no output logged to it.
+All logs are written to the console by default. If you want to enable logging to `themorpheusbot.log`, open `logger.js` and change the first line to `const logToFile = true`.
 
 Regardless of this, logs of level `error` or higher are always written to `themorpheusbot.error.log`.
 
