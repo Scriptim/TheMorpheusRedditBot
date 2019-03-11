@@ -97,6 +97,7 @@ function loadPlugins() {
   }
 }
 
-logger.debug('Starting webhook for GitHub')
-const githubWebhook = require('./github-webhook.js')
-githubWebhook(credentials.WEBHOOK_SECRET, 8080, log4js.getLogger('gh-webhook'))
+// Uncomment to enable automatic updates (potential security risk):
+// logger.debug('Starting webhook for GitHub')
+// const githubWebhook = require('./github-webhook.js')
+// githubWebhook(credentials.WEBHOOK_SECRET, 8080, log4js.getLogger('gh-webhook'))
