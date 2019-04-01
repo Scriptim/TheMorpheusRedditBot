@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/Scriptim/TheMorpheusRedditBot#readme",
   "dependencies": {
-    "forever": "^0.15.3",
+    "forever": "^0.15.4",
     "github-webhook-handler": "^0.7.1",
     "googleapis": "^39.1.0",
     "log4js": "^4.1.0",
