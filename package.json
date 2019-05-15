@@ -25,7 +25,7 @@
   "dependencies": {
     "forever": "^1.0.0",
     "github-webhook-handler": "^0.7.1",
-    "googleapis": "^39.2.0",
+    "googleapis": "^40.0.0",
     "log4js": "^4.1.0",
     "readline-sync": "^1.4.9",
     "request": "^2.88.0",
